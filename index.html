@@ -16,7 +16,7 @@
         }
 
         body {
-            background-color: rgb(17, 17, 70);
+            background-color: #0c0c0c;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -26,7 +26,6 @@
             background-image: url(./game.jpg);
             background-color: rgba(0, 0, 0, 0.3);
             background-blend-mode: overlay;
-            border: 10px black solid;
             padding-top: 20px;
             height: 720px;
             width: 600px;
@@ -63,7 +62,7 @@
             align-items: baseline;
 
         }
-        .replay {
+        .replay, .reload {
             margin-left: 40px;
         }
     </style>
@@ -79,7 +78,7 @@
         <div class="instructions">
             <ul>
                 <li style="list-style: none;">Instructions</li>
-                <li>A number will be chosen between 1 to 10 randomly.</li>
+                <li>A number will be chosen between 1 to 100 randomly.</li>
                 <li>After each wrong guess you'll be given a hint.</li>
             </ul>
         </div>
@@ -101,6 +100,7 @@
             </div>
             <h5 class="hint"></h5>
         </div>
+        <button type="button" class="btn reload btn-light">Play again! </button>
 
     </div>
     <script src="./index.js"></script>
