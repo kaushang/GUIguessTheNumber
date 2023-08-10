@@ -2,7 +2,7 @@ function game() {
     // RANDOM NUMBER GENERATIONvar randomNumber;
     function randomNumberGenerater() {
         randomNumber = Math.floor(Math.random() * 100 + 1);
-        console.log(randomNumber);
+        // console.log(randomNumber);
     }
     document.querySelector(".reload").style.visibility = "hidden";
     randomNumberGenerater();
