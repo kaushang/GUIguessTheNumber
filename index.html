@@ -25,10 +25,11 @@
         .main-container {
             background-image: url(./game.jpg);
             background-color: rgba(0, 0, 0, 0.3);
+            background-repeat: no-repeat;
             background-blend-mode: overlay;
             padding-top: 20px;
-            height: 720px;
             width: 600px;
+            height: 720px;
         }
 
         .instructions {
@@ -62,8 +63,47 @@
             align-items: baseline;
 
         }
-        .replay, .reload {
+
+        .replay,
+        .reload {
             margin-left: 40px;
+        }
+
+        @media screen and (max-width: 1080px) {
+            .main-container {
+                height: 100vh;
+                width: 100%;
+                background-size: 1080px 2340px;
+            }
+
+            .heading {
+                font-size: 80px;
+                margin-bottom: 100px;
+                margin-top: 40px;
+            }
+
+            .instructions li {
+                font-size: 42px;
+            }
+
+            .sub-heading h4,
+            .sub-heading h5,
+            .hint {
+                font-size: 42px;
+            }
+
+            .reload {
+                font-size: 24px;
+                width: 160px;
+                height: 60px;
+            }
+
+            .form-control-file,
+            .btn-outline-dark {
+                margin-top: 40px;
+                font-size: 38px;
+            }
+
         }
     </style>
 </head>
