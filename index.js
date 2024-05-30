@@ -1,4 +1,6 @@
+// INITIALIZING SCORE
 var score = -1;
+var yes = false;
 function game() {
     // RANDOM NUMBER GENERATION
     function randomNumberGenerater() {
@@ -7,7 +9,6 @@ function game() {
     }
     document.querySelector(".reload").style.visibility = "hidden";
     randomNumberGenerater();
-    // INITIALIZING SCORE
     // NUMBER INSERTION AND CHECKING
     document.querySelector("#button-addon2").addEventListener("click", function () {
         let userChosenNumber = document.querySelector(".form-control-file").value;
@@ -16,7 +17,13 @@ function game() {
         if (userChosenNumber == randomNumber) {
             document.querySelector(".hint").innerHTML = "Right answer!";
             document.querySelector("#chances").innerHTML = "Your score is " + Number(10-score) + "/10";
-            document.querySelector('#chancesLeft').innerHTML = "Chances left: " + Number(8-(score+1));
+            if(yes == true) {
+                document.querySelector('#chancesLeft').innerHTML = Number(8-(score+1));
+            }
+            else {
+                document.querySelector('#chancesLeft').innerHTML = "Chances left: " + Number(8-(score+1));
+            }
+            // document.querySelector('#chancesLeft').innerHTML = "Chances left: " + Number(8-(score+1));
             document.querySelector("#button-addon2").style.visibility = "hidden";
             document.querySelector(".reload").style.visibility = "visible";
             document.querySelector(".reload").addEventListener("click", ()=> {
@@ -27,7 +34,13 @@ function game() {
         else {
             // CHECKS IF WE HAVE CHANCES LEFT OR NOT
             if(score == 7) {
-                document.querySelector('#chancesLeft').innerHTML = "Chances left: " + Number(8-(score+1));
+                if(yes == true) {
+                    document.querySelector('#chancesLeft').innerHTML = Number(8-(score+1));
+                }
+                else {
+                    document.querySelector('#chancesLeft').innerHTML = "Chances left: " + Number(8-(score+1));
+                }
+                // document.querySelector('#chancesLeft').innerHTML = "Chances left: " + Number(8-(score+1));
                 document.querySelector(".hint").innerHTML = "Game Over! :(";
                 document.querySelector("#button-addon2").style.visibility = "hidden";
                 document.querySelector(".reload").style.visibility = "visible";
@@ -41,7 +54,13 @@ function game() {
                 score--;
             }
             else {
-                document.querySelector('#chancesLeft').innerHTML = "Chances left: " + Number(8-(score+1));
+                if(yes == true) {
+                    document.querySelector('#chancesLeft').innerHTML = Number(8-(score+1));
+                }
+                else {
+                    document.querySelector('#chancesLeft').innerHTML = "Chances left: " + Number(8-(score+1));
+                }
+                // document.querySelector('#chancesLeft').innerHTML = "Chances left: " + Number(8-(score+1));
                 if(userChosenNumber > randomNumber) {
                     document.querySelector(".hint").innerHTML = "The number is less than " + userChosenNumber;
                 }
@@ -54,13 +73,14 @@ function game() {
 })
 }
 game();
-
 function updateContent(mediaQueryList) {
     const messageDiv = document.querySelector('#chancesLeft');
     if (mediaQueryList.matches) {
+        yes = true;
       // Screen width is 1080px or less
       messageDiv.textContent = Number(8-(score+1));
     } else {
+        yes = false;
       // Screen width is greater than 1080px
       messageDiv.textContent = 'Chances left: ' + Number(8-(score+1));
     }
