@@ -63,7 +63,15 @@
             align-items: baseline;
 
         }
-
+        .input-n-chances {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: baseline;
+            }
+            #chancesLeft {
+                margin-left: 50px;
+            }
         .replay,
         .reload {
             margin-left: 40px;
@@ -103,6 +111,10 @@
                 margin-top: 40px;
                 font-size: 38px;
             }
+            #chancesLeft {
+                font-size: 40px;
+            }
+
 
         }
     </style>
@@ -118,8 +130,10 @@
         <div class="instructions">
             <ul>
                 <li style="list-style: none;">Instructions</li>
-                <li>A number will be chosen between 1 to 100 randomly.</li>
-                <li>After each wrong guess you'll be given a hint.</li>
+                <li>A number will be chosen between 1 to 100(Inclusive) randomly.</li>
+                <li>You have to guess that number within the given number of chances.</li>
+                <li>After each wrong guess you'll be given a hint that <br> whether the number is greater or less than
+                    your guessed number.</li>
             </ul>
         </div>
 
@@ -131,13 +145,19 @@
 
 
         <div class="user-input">
-            <div class="input-group mb-3">
-                <input
-                    onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"
-                    style="color: black;" type="text" class="form-control-file" aria-describedby="button-addon2">
-                <button onclick="" class="btn btn-light btn-outline-dark" type="button"
-                    id="button-addon2">Submit</button>
+            <div class="input-n-chances">
+                <div class="input-group mb-3">
+                    <input
+                        onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"
+                        style="color: black;" type="text" class="form-control-file" aria-describedby="button-addon2">
+                    <button onclick="" class="btn btn-light btn-outline-dark" type="button"
+                        id="button-addon2">Submit</button>
+                </div>
+                <div>
+                    <h4 id="chancesLeft">Chances left: 8</h4>
+                </div>
             </div>
+
             <h5 class="hint"></h5>
         </div>
         <button type="button" class="btn reload btn-light">Play again! </button>
