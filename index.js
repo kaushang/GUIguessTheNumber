@@ -1,3 +1,4 @@
+var score = -1;
 function game() {
     // RANDOM NUMBER GENERATION
     function randomNumberGenerater() {
@@ -7,7 +8,6 @@ function game() {
     document.querySelector(".reload").style.visibility = "hidden";
     randomNumberGenerater();
     // INITIALIZING SCORE
-    var score = -1;
     // NUMBER INSERTION AND CHECKING
     document.querySelector("#button-addon2").addEventListener("click", function () {
         let userChosenNumber = document.querySelector(".form-control-file").value;
@@ -54,3 +54,23 @@ function game() {
 })
 }
 game();
+
+function updateContent(mediaQueryList) {
+    const messageDiv = document.querySelector('#chancesLeft');
+    if (mediaQueryList.matches) {
+      // Screen width is 1080px or less
+      messageDiv.textContent = Number(8-(score+1));
+    } else {
+      // Screen width is greater than 1080px
+      messageDiv.textContent = 'Chances left: ' + Number(8-(score+1));
+    }
+  }
+
+  // Create a MediaQueryList object
+  const mediaQueryList = window.matchMedia('(max-width: 1080px)');
+
+  // Add a listener for changes in the media query state
+  mediaQueryList.addEventListener('change', () => updateContent(mediaQueryList));
+
+  // Initial check
+  updateContent(mediaQueryList);
