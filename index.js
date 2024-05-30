@@ -1,33 +1,56 @@
 function game() {
-    // RANDOM NUMBER GENERATIONvar randomNumber;
+    // RANDOM NUMBER GENERATION
     function randomNumberGenerater() {
         randomNumber = Math.floor(Math.random() * 100 + 1);
-        console.log(randomNumber);
+        // console.log(randomNumber);
     }
     document.querySelector(".reload").style.visibility = "hidden";
     randomNumberGenerater();
     // INITIALIZING SCORE
-    var a = 0;
+    var score = -1;
     // NUMBER INSERTION AND CHECKING
     document.querySelector("#button-addon2").addEventListener("click", function () {
         let userChosenNumber = document.querySelector(".form-control-file").value;
         Number.parseInt(userChosenNumber);
-        a++;
+        score++;
         if (userChosenNumber == randomNumber) {
             document.querySelector(".hint").innerHTML = "Right answer!";
-            document.querySelector("#chances").innerHTML = "Your score is " + Number(100-a);
+            document.querySelector("#chances").innerHTML = "Your score is " + Number(10-score) + "/10";
+            document.querySelector('#chancesLeft').innerHTML = "Chances left: " + Number(8-(score+1));
+            document.querySelector("#button-addon2").style.visibility = "hidden";
             document.querySelector(".reload").style.visibility = "visible";
             document.querySelector(".reload").addEventListener("click", ()=> {
                 location.reload();
             })            
+            
         }
-        else if (userChosenNumber > randomNumber) {
-            document.querySelector(".hint").innerHTML = "The number is less than " + userChosenNumber;
+        else {
+            // CHECKS IF WE HAVE CHANCES LEFT OR NOT
+            if(score == 7) {
+                document.querySelector('#chancesLeft').innerHTML = "Chances left: " + Number(8-(score+1));
+                document.querySelector(".hint").innerHTML = "Game Over! :(";
+                document.querySelector("#button-addon2").style.visibility = "hidden";
+                document.querySelector(".reload").style.visibility = "visible";
+                document.querySelector(".reload").addEventListener("click", ()=> {
+                    location.reload();
+                }) 
+            }
+            // PREVENTS INVALID INPUT
+            else if(userChosenNumber > 100 || userChosenNumber <= 0) {
+                document.querySelector(".hint").innerHTML = "Please enter number within the given range.";
+                score--;
+            }
+            else {
+                document.querySelector('#chancesLeft').innerHTML = "Chances left: " + Number(8-(score+1));
+                if(userChosenNumber > randomNumber) {
+                    document.querySelector(".hint").innerHTML = "The number is less than " + userChosenNumber;
+                }
+                else {
+                    document.querySelector(".hint").innerHTML = "The number is greater than " + userChosenNumber;
+                }
+                
+            }
         }
-        else if (userChosenNumber < randomNumber) {
-            document.querySelector(".hint").innerHTML = "The number is greater than " + userChosenNumber;
-        }
-    })
+})
 }
 game();
-
